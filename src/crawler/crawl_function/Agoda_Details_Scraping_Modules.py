@@ -145,50 +145,6 @@ def Get_Reviews (soup, url):
     except Exception as e:
         print(f"Error inserting reviews for {url}: {e}")
     
-# def Preparation ():    
-#     options = Options()
-#     # Bỏ comment nếu muốn chạy headless (ẩn trình duyệt)
-#     # options.add_argument('--headless')
-
-#     # Các option giúp chạy ổn định trên macOS
-#     options.add_argument('--no-sandbox')
-#     options.add_argument('--disable-dev-shm-usage')
-
-#     # Giúp ẩn dấu hiệu tự động hóa
-#     options.add_argument('--disable-blink-features=AutomationControlled')
-
-#     # Tắt popup, extension
-#     options.add_argument('--disable-extensions')
-#     options.add_argument('--disable-popup-blocking')
-
-#     # Giả lập user-agent trình duyệt thật
-#     options.add_argument(
-#         "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-#         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
-#     )
-
-#     # Tắt GPU cho máy không dùng đồ họa hoặc headless
-#     options.add_argument('--disable-gpu')
-
-#     # Cỡ cửa sổ trình duyệt
-#     options.add_argument('--window-size=1920,1080')
-
-#     driver = webdriver.Chrome(options=options)
-
-#     # Ẩn navigator.webdriver giúp tránh bị phát hiện bot
-#     driver.execute_cdp_cmd(
-#         'Page.addScriptToEvaluateOnNewDocument',
-#         {
-#             'source': '''
-#                 Object.defineProperty(navigator, 'webdriver', {get: () => undefined})
-#             '''
-#         }
-#     )
-
-#     # Ví dụ random delay mô phỏng người dùng
-#     time.sleep(random.uniform(2,5))
-#     return driver
-
 def wait_for_main_elements(driver):
     WebDriverWait(driver, 12).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-testid='activities-overview']"))
@@ -212,7 +168,12 @@ def wait_for_reviews(driver):
     except:
         return False
     
+    
+
 def Scraping_Details (s_batches):
+    """
+    
+    """
     driver = Create_WebDriver ()       
     failed_urls = []
     for idx, batch in enumerate (s_batches):
